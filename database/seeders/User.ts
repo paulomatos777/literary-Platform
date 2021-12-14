@@ -6,14 +6,14 @@ export default class UserSeeder extends BaseSeeder {
     const uniqueKey = 'email'
     await User.updateOrCreateMany(uniqueKey, [
       {
-        name: 'Joao Sampaio',
+        name: 'Joalisson Pereira',
         email: 'virk@adonisjst.com',
-        password: 'secret',
+        password: 'admin',
       },
       {
-        name: 'Viviane Oliveira',
+        name: 'Gilberto Ramos',
         email: 'romain@adonisjst.com',
-        password: 'supersecret',
+        password: 'admin',
       },
     ])
   }

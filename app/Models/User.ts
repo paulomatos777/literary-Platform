@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
 import { DateTime } from 'luxon'
-import { BaseModel, column, beforeCreate } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, beforeCreate, beforeSave } from '@ioc:Adonis/Lucid/Orm'
+// import { Hash } from '@adonisjs/core/build/standalone'
+import Hash from '@ioc:Adonis/Core/Hash'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -27,5 +29,12 @@ export default class User extends BaseModel {
   @beforeCreate()
   public static assignUuid(user: User) {
     user.secure_id = uuidv4()
+  }
+  //hook de criptografia de senha
+  @beforeSave()
+  public static async hashPassword(user: User) {
+    if (user.$dirty.password) {
+      user.password = await Hash.make(user.password)
+    }
   }
 }
