@@ -19,6 +19,12 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import Database from '@ioc:Adonis/Lucid/Database'
+import 'App/Modules/User/routes'
 
-Route.post('/login', 'AuthController.login')
+Route.group(() => {
+  Route.get('/', () => {
+    return 'Hello Paulo'
+  })
+
+  Route.post('login', 'AuthController.login')
+}).prefix('/api')
