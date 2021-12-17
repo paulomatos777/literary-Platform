@@ -1,10 +1,12 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import { Request } from '@adonisjs/core/build/standalone'
+import Users from 'Database/migrations/1639163498601_users'
 
 export default class UsersController {
   public async index({}: HttpContextContract) {
-    return 'all users'
+    const user = User.all()
+    return user
   }
 
   public async store({ request }: HttpContextContract) {

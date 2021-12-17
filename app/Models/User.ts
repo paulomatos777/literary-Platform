@@ -1,10 +1,21 @@
 import { v4 as uuidv4 } from 'uuid'
 import { DateTime } from 'luxon'
-import { BaseModel, column, beforeCreate, beforeSave } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column,
+  beforeCreate,
+  beforeSave,
+  manyToMany,
+  ManyToMany,
+} from '@ioc:Adonis/Lucid/Orm'
 // import { Hash } from '@adonisjs/core/build/standalone'
 import Hash from '@ioc:Adonis/Core/Hash'
+import Book from './Book'
 
 export default class User extends BaseModel {
+  @manyToMany(() => Book)
+  public book: ManyToMany<typeof Book>
+
   @column({ isPrimary: true })
   public id: number
 

@@ -20,11 +20,9 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import 'App/Modules/User/routes'
+import 'App/Modules/Book/routes'
+import 'App/Modules/BookUser/routes'
 
 Route.group(() => {
-  Route.get('/', () => {
-    return 'Hello Paulo'
-  })
-
-  Route.post('login', 'AuthController.login')
+  Route.post('/login', 'AuthController.login')
 }).prefix('/api')
